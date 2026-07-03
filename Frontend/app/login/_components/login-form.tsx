@@ -140,7 +140,7 @@ export function LoginForm() {
               disabled={form.formState.isSubmitting}
             >
               <LogIn className="size-4" />
-              {form.formState.isSubmitting ? 'Signing in...' : 'Sign In'}
+              {form.formState.isSubmitting ? 'Logging in...' : 'Log In'}
             </Button>
           </form>
         </Form>
