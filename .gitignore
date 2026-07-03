@@ -4,3 +4,5 @@ node_modules/
 dist/
 *.tsbuildinfo
 Backend/src/generated/
+Frontend/lib/generated/
+Frontend/.env.local

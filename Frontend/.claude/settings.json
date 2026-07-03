@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rln \"DBFieldAttribute\" node_modules/@better-auth/core/dist/*.d.mts)",
+      "Bash(grep -rn \"DBFieldAttribute =\" node_modules/@better-auth/core/dist/*.d.mts)",
+      "Bash(node -e \"const p=JSON.parse\\(require\\('fs'\\).readFileSync\\('node_modules/better-auth/package.json'\\)\\); console.log\\(Object.keys\\(p.exports\\).filter\\(k=>k.includes\\('react'\\)||k.includes\\('vue'\\)||k.includes\\('solid'\\)\\)\\)\")",
+      "Bash(npx @better-auth/cli generate --config lib/auth.ts -y)",
+      "Bash(node -e \"const p=JSON.parse\\(require\\('fs'\\).readFileSync\\('node_modules/better-auth/package.json'\\)\\); console.log\\(JSON.stringify\\(p.exports['./crypto'],null,2\\)\\)\")"
+    ]
+  }
+}
