@@ -1,4 +1,4 @@
-import { getCandidateById } from '@/server/actions/candidates.actions'
+import { getCandidateById } from '@/services/candidate.server-services'
 import { getJobs } from '@/server/actions/jobs.actions'
 import { DESTINATIONS, CANDIDATE_STATUS_LABELS, getStatusVariant } from '@/lib/constants'
 import { Badge } from '@/components/ui/badge'

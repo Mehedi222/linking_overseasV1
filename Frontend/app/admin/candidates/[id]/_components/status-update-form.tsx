@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import type { Candidate } from '@/lib/generated/prisma/client'
 import { CANDIDATE_STATUS_LABELS } from '@/lib/constants'
-import { updateCandidateStatus } from '@/server/actions/candidates.actions'
+import { updateCandidateStatus } from '@/services/candidate.services'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'

@@ -12,7 +12,7 @@ import {
   EDUCATION_LEVELS,
   EXPERIENCE_LEVELS,
 } from '@/lib/constants'
-import { submitCV } from '@/server/actions/candidates.actions'
+import { submitCV } from '@/services/candidate.services'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
