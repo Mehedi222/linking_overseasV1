@@ -2,10 +2,12 @@ import Link from 'next/link'
 import { ShieldCheck, BadgeCheck, Plane } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { COMPANY } from '@/lib/constants'
+import { PlaneSkyAnimation } from './plane-sky-animation'
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+      <PlaneSkyAnimation />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.15),transparent_55%)]" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
         <div className="space-y-6">

@@ -126,6 +126,31 @@
   animation: fade-in 0.25s ease-out;
 }
 
+@keyframes fly-loop {
+  0%   { left: 50%; top: 8%;  transform: translate(-50%, -50%) rotate(-45deg); }
+  12.5%{ left: 80%; top: 15%; transform: translate(-50%, -50%) rotate(0deg); }
+  25%  { left: 92%; top: 40%; transform: translate(-50%, -50%) rotate(45deg); }
+  37.5%{ left: 80%; top: 65%; transform: translate(-50%, -50%) rotate(90deg); }
+  50%  { left: 50%; top: 76%; transform: translate(-50%, -50%) rotate(135deg); }
+  62.5%{ left: 20%; top: 65%; transform: translate(-50%, -50%) rotate(180deg); }
+  75%  { left: 8%;  top: 40%; transform: translate(-50%, -50%) rotate(225deg); }
+  87.5%{ left: 20%; top: 15%; transform: translate(-50%, -50%) rotate(270deg); }
+  100% { left: 50%; top: 8%;  transform: translate(-50%, -50%) rotate(315deg); }
+}
+
+.animate-fly-loop {
+  animation: fly-loop 20s linear infinite;
+}
+
+@keyframes drift-cloud {
+  from { transform: translateX(-15%); }
+  to   { transform: translateX(115%); }
+}
+
+.animate-drift-cloud {
+  animation: drift-cloud linear infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
