@@ -53,16 +53,6 @@ export function LoginForm() {
     }
   }
 
-  async function onGoogleSignIn() {
-    setError('')
-    try {
-      await authClient.signIn.social({ provider: 'google', callbackURL: '/admin/candidates' })
-    } catch (err) {
-      console.error('[LoginForm]', err)
-      setError('Something went wrong. Please try again.')
-    }
-  }
-
   return (
     <div className="w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-2xl backdrop-blur">
       <div className="flex items-center gap-3 bg-gradient-to-r from-indigo-600/40 to-purple-600/40 px-6 py-6">
@@ -154,21 +144,6 @@ export function LoginForm() {
             </Button>
           </form>
         </Form>
-
-        <div className="mt-5 flex items-center gap-3 text-xs text-slate-500">
-          <div className="h-px flex-1 bg-white/10" />
-          or continue with
-          <div className="h-px flex-1 bg-white/10" />
-        </div>
-
-        <Button
-          type="button"
-          variant="outline"
-          className="mt-5 w-full cursor-pointer border-white/10 bg-white/5 text-white hover:bg-white/10"
-          onClick={onGoogleSignIn}
-        >
-          Continue with Google
-        </Button>
 
         <div className="mt-6 border-t border-white/10 pt-4 text-center text-xs text-slate-500">
           {COMPANY.name}

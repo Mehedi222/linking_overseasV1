@@ -12,19 +12,6 @@ export const auth = betterAuth({
     enabled: true,
     disableSignUp: true,
   },
-  // Additive to email/password sign-in — only enabled once real Google Cloud
-  // OAuth credentials are provided via env vars. Omitted (not empty strings)
-  // when unset, since better-auth validates provider config at startup.
-  ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
-    ? {
-        socialProviders: {
-          google: {
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          },
-        },
-      }
-    : {}),
   user: {
     additionalFields: {
       role: {
