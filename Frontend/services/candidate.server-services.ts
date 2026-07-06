@@ -23,9 +23,9 @@ export async function getCandidates(options?: {
   if (options?.pageSize) params.set('pageSize', String(options.pageSize))
 
   const qs = params.toString()
-  return apiServer<GetCandidatesResult>(`/candidates${qs ? `?${qs}` : ''}`)
+  return apiServer<GetCandidatesResult>(`/candidates${qs ? `?${qs}` : ''}`, { cache: 'no-store' })
 }
 
 export async function getCandidateById(id: string) {
-  return apiServer<Candidate>(`/candidates/${id}`)
+  return apiServer<Candidate>(`/candidates/${id}`, { cache: 'no-store' })
 }

@@ -1,7 +1,9 @@
 import 'server-only'
 import { headers } from 'next/headers'
 
-export async function apiServer<T>(path: string, options: RequestInit = {}): Promise<T> {
+type ApiServerOptions = RequestInit & { next?: { revalidate?: number | false; tags?: string[] } }
+
+export async function apiServer<T>(path: string, options: ApiServerOptions = {}): Promise<T> {
   const incomingHeaders = await headers()
   const cookie = incomingHeaders.get('cookie') ?? ''
 
@@ -12,7 +14,6 @@ export async function apiServer<T>(path: string, options: RequestInit = {}): Pro
       cookie,
       ...options.headers,
     },
-    cache: 'no-store',
   })
 
   const body = await res.json()
