@@ -12,10 +12,11 @@ import {
   SheetTitle,
   SheetClose,
 } from '@/components/ui/sheet'
-import { NAV_LINKS, COMPANY } from '@/lib/constants'
+import { NAV_LINKS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import type { ISiteSettings } from '@/services/site-settings.server-services'
 
-export function SiteHeader() {
+export function SiteHeader({ settings }: { settings: ISiteSettings }) {
   const pathname = usePathname()
 
   return (
@@ -24,14 +25,14 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 text-xs">
           <span className="inline-flex items-center gap-1.5 font-medium text-orange-400">
             <ShieldCheck className="size-3.5" />
-            GOVT. APPROVED RECRUITING LICENCE NO. {COMPANY.license.replace('BMET ', '')}
+            GOVT. APPROVED RECRUITING LICENCE NO. {settings.license.replace('BMET ', '')}
           </span>
           <div className="flex items-center gap-4">
-            <a href={`tel:${COMPANY.phone}`} className="inline-flex items-center gap-1.5 cursor-pointer hover:text-white">
-              <Phone className="size-3.5" /> {COMPANY.phone}
+            <a href={`tel:${settings.phone}`} className="inline-flex items-center gap-1.5 cursor-pointer hover:text-white">
+              <Phone className="size-3.5" /> {settings.phone}
             </a>
-            <a href={`mailto:${COMPANY.email}`} className="inline-flex items-center gap-1.5 cursor-pointer hover:text-white">
-              <Mail className="size-3.5" /> {COMPANY.email}
+            <a href={`mailto:${settings.email}`} className="inline-flex items-center gap-1.5 cursor-pointer hover:text-white">
+              <Mail className="size-3.5" /> {settings.email}
             </a>
           </div>
         </div>
@@ -44,8 +45,8 @@ export function SiteHeader() {
               <ShieldCheck className="size-5" />
             </span>
             <span className="flex flex-col leading-tight">
-              <span className="text-sm font-bold tracking-tight">{COMPANY.name.toUpperCase()}</span>
-              <span className="text-[10px] text-muted-foreground">Since {COMPANY.since}</span>
+              <span className="text-sm font-bold tracking-tight">{settings.companyName.toUpperCase()}</span>
+              <span className="text-[10px] text-muted-foreground">Since {settings.since}</span>
             </span>
           </Link>
 
@@ -83,7 +84,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle>{COMPANY.name}</SheetTitle>
+                <SheetTitle>{settings.companyName}</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4">
                 {NAV_LINKS.map((link) => (
