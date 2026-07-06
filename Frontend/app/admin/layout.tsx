@@ -36,6 +36,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <Link href="/admin/messages" className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">
           Messages
         </Link>
+        <Link href="/admin/settings" className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">
+          Settings
+        </Link>
         <span className="ml-auto text-sm text-muted-foreground">{session.user.name}</span>
         <LogoutButton />
       </nav>
