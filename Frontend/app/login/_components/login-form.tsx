@@ -11,7 +11,6 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { authClient } from '@/lib/auth-client'
-import { COMPANY } from '@/lib/constants'
 
 const loginSchema = z.object({
   username: z.string().min(1, 'Username is required'),
@@ -21,7 +20,7 @@ const loginSchema = z.object({
 
 type LoginValues = z.infer<typeof loginSchema>
 
-export function LoginForm() {
+export function LoginForm({ companyName }: { companyName: string }) {
   const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
@@ -146,7 +145,7 @@ export function LoginForm() {
         </Form>
 
         <div className="mt-6 border-t border-white/10 pt-4 text-center text-xs text-slate-500">
-          {COMPANY.name}
+          {companyName}
         </div>
       </div>
     </div>
