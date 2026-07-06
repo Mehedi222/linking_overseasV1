@@ -10,7 +10,9 @@ export default function SettingsPage() {
         <p className="text-sm text-muted-foreground">Manage your account settings</p>
       </div>
 
-      <ChangePasswordForm />
+      <div className="flex justify-center">
+        <ChangePasswordForm />
+      </div>
     </div>
   )
 }
