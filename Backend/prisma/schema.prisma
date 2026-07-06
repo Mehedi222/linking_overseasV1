@@ -333,3 +333,22 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+model SiteSettings {
+  id          String   @id @default(cuid())
+  companyName String
+  shortName   String
+  since       String
+  license     String
+  description String
+  phone       String
+  phoneAlt    String?
+  whatsapp    String?
+  email       String
+  address     String
+  websiteUrl  String?
+  whatsappUrl String?
+  telegramUrl String?
+  otherUrl    String?
+  updatedAt   DateTime @updatedAt
+}
