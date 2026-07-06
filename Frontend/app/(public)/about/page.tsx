@@ -1,36 +1,38 @@
 import type { Metadata } from 'next'
 import { ShieldCheck, Target, Eye, Building2 } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
-import { COMPANY } from '@/lib/constants'
+import { getSiteSettings } from '@/services/site-settings.server-services'
 
 export const metadata: Metadata = { title: 'About Us — Linking Overseas' }
 
-const STATS = [
-  { label: 'BMET License', value: COMPANY.license },
-  { label: 'Established', value: COMPANY.since },
-  { label: 'GCC Destinations', value: '6+' },
-  { label: 'Year 1 Placement Target', value: '50–100/mo' },
-]
+export default async function AboutPage() {
+  const settings = await getSiteSettings()
 
-export default function AboutPage() {
+  const stats = [
+    { label: 'BMET License', value: settings.license },
+    { label: 'Established', value: settings.since },
+    { label: 'GCC Destinations', value: '6+' },
+    { label: 'Year 1 Placement Target', value: '50–100/mo' },
+  ]
+
   return (
     <div className="animate-fade-in">
       <section className="bg-slate-950 py-16 text-white">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-1.5 text-xs font-medium text-orange-300">
-            <ShieldCheck className="size-4" /> {COMPANY.license} Licensed Agency
+            <ShieldCheck className="size-4" /> {settings.license} Licensed Agency
           </span>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">About {COMPANY.name}</h1>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">About {settings.companyName}</h1>
           <p className="mt-3 text-sm text-slate-300">
             A production-grade recruitment platform connecting Bangladeshi job seekers to
-            employers across the GCC region since {COMPANY.since}.
+            employers across the GCC region since {settings.since}.
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-4 py-16">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {STATS.map((stat) => (
+          {stats.map((stat) => (
             <Card key={stat.label} className="text-center">
               <CardContent className="flex flex-col gap-1">
                 <span className="text-lg font-bold text-orange-500">{stat.value}</span>
@@ -77,14 +79,14 @@ export default function AboutPage() {
             <h2 className="text-lg font-semibold">Company Profile</h2>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
-            {COMPANY.name} is a {COMPANY.license} licensed overseas recruitment agency based in
+            {settings.companyName} is a {settings.license} licensed overseas recruitment agency based in
             Dhaka, Bangladesh. We support skilled manpower recruitment, housemaid and domestic
             worker recruitment, manpower training, work visa processing, BMET clearance, and air
             ticket coordination for employers across Saudi Arabia, UAE, Qatar, Kuwait, Oman and
             Bahrain.
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            Registered office: {COMPANY.address}
+            Registered office: {settings.address}
           </p>
         </div>
       </section>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { CheckCircle2, MessageCircle, Phone } from 'lucide-react'
 import { EmployerRequirementForm } from './_components/employer-requirement-form'
 import { FaqSection } from '@/components/faq-section'
-import { COMPANY } from '@/lib/constants'
+import { getSiteSettings } from '@/services/site-settings.server-services'
 
 export const metadata: Metadata = { title: 'Hire Skilled Bangladeshi Workers — Linking Overseas' }
 
@@ -14,7 +14,10 @@ const EMPLOYER_BENEFITS = [
   'Employer-focused follow-up from our Dhaka office team',
 ]
 
-export default function HireWorkersPage() {
+export default async function HireWorkersPage() {
+  const settings = await getSiteSettings()
+  const whatsapp = settings.whatsapp ?? settings.phone
+
   return (
     <div className="animate-fade-in">
       <section className="bg-slate-950 py-14 text-white">
@@ -37,7 +40,7 @@ export default function HireWorkersPage() {
         <div className="mx-auto max-w-3xl px-4">
           <h2 className="text-xl font-semibold">Employer Benefits</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            {COMPANY.name} helps foreign employers, manpower buyers and recruitment partners hire
+            {settings.companyName} helps foreign employers, manpower buyers and recruitment partners hire
             workers from Bangladesh through a transparent and ethical process.
           </p>
           <ul className="mt-5 space-y-2.5">
@@ -59,18 +62,18 @@ export default function HireWorkersPage() {
         </p>
         <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <a
-            href={`https://wa.me/${COMPANY.whatsapp.replace(/[^\d]/g, '')}`}
+            href={`https://wa.me/${whatsapp.replace(/[^\d]/g, '')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 rounded-md bg-green-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-green-700 cursor-pointer"
           >
-            <MessageCircle className="size-4" /> WhatsApp: {COMPANY.whatsapp}
+            <MessageCircle className="size-4" /> WhatsApp: {whatsapp}
           </a>
           <a
-            href={`mailto:${COMPANY.email}`}
+            href={`mailto:${settings.email}`}
             className="flex items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
           >
-            <Phone className="size-4" /> Email: {COMPANY.email}
+            <Phone className="size-4" /> Email: {settings.email}
           </a>
         </div>
       </section>
