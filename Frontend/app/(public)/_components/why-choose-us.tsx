@@ -1,25 +1,27 @@
 import Link from 'next/link'
 import { CheckCircle2, ArrowRight } from 'lucide-react'
-import { COMPANY } from '@/lib/constants'
+import { getSiteSettings } from '@/services/site-settings.server-services'
 
-const CHECKLIST = [
-  `${COMPANY.license} Verified`,
-  'Fast Employer Response',
-  'Overseas Hiring Ready',
-]
+export async function WhyChooseUs() {
+  const settings = await getSiteSettings()
 
-export function WhyChooseUs() {
+  const checklist = [
+    `${settings.license} Verified`,
+    'Fast Employer Response',
+    'Overseas Hiring Ready',
+  ]
+
   return (
     <section className="bg-background py-16 sm:py-20">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-stretch">
         <div className="rounded-2xl bg-slate-950 p-8 text-white">
-          <h2 className="text-2xl font-bold tracking-tight">Why Choose {COMPANY.name}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">Why Choose {settings.companyName}</h2>
           <p className="mt-2 text-sm text-slate-400">
             Clear company identity, licence, ethical recruitment workflow and employer-focused
             support for overseas hiring from Bangladesh.
           </p>
           <ul className="mt-6 space-y-3">
-            {CHECKLIST.map((item) => (
+            {checklist.map((item) => (
               <li key={item} className="flex items-center gap-2.5 text-sm text-slate-200">
                 <CheckCircle2 className="size-4 shrink-0 text-orange-400" />
                 {item}
@@ -47,7 +49,7 @@ export function WhyChooseUs() {
           </h3>
           <p className="mt-1 text-lg font-semibold">Licensed &amp; Verified</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            {COMPANY.license} licensed recruiting agency with visible company profile, Dhaka
+            {settings.license} licensed recruiting agency with visible company profile, Dhaka
             office and compliance-first positioning.
           </p>
           <Link

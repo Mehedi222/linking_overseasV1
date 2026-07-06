@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { ShieldCheck, BadgeCheck, Plane } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { COMPANY } from '@/lib/constants'
+import { getSiteSettings } from '@/services/site-settings.server-services'
 import { PlaneSkyAnimation } from './plane-sky-animation'
 
-export function Hero() {
+export async function Hero() {
+  const settings = await getSiteSettings()
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
       <PlaneSkyAnimation />
@@ -12,13 +14,13 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
         <div className="space-y-6">
           <span className="inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-1.5 text-xs font-medium text-orange-300">
-            <BadgeCheck className="size-4" /> {COMPANY.license} Verified · Trusted Agency
+            <BadgeCheck className="size-4" /> {settings.license} Verified · Trusted Agency
           </span>
           <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
             Hire Skilled Bangladeshi Workers for Overseas Employment
           </h1>
           <p className="max-w-lg text-base text-slate-300">
-            {COMPANY.name} connects Bangladeshi job seekers with verified employers across the
+            {settings.companyName} connects Bangladeshi job seekers with verified employers across the
             GCC region through transparent screening, compliant documentation and end-to-end
             deployment support.
           </p>
@@ -46,7 +48,7 @@ export function Hero() {
             <div className="flex items-center gap-2 text-xs font-medium text-orange-300">
               <ShieldCheck className="size-4" /> BMET Verified
             </div>
-            <div className="mt-4 text-4xl font-bold tracking-tight">{COMPANY.license.replace('BMET ', '')}</div>
+            <div className="mt-4 text-4xl font-bold tracking-tight">{settings.license.replace('BMET ', '')}</div>
             <div className="mt-1 text-sm text-slate-400">Trusted Agency</div>
             <div className="mt-6 space-y-3 border-t border-white/10 pt-4 text-sm">
               <div className="flex items-center gap-2 text-slate-300">
